@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bnt.mapper.ProviderMapper">
+    <resultMap id="BaseResultMap" type="org.bnt.entity.Provider">
+        <result column="providerid" property="providerid"/>
+        <result column="nameprovider" property="nameprovider"/>
+        <result column="cityprovider" property="cityprovider"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        providerid, nameprovider, cityprovider
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shp.provider
+    </select>
+
+    <delete id="remove">
+        DELETE
+        FROM shp.provider
+        WHERE providerid = #{providerid}
+    </delete>
+
+    <insert id="add">
+        insert into shp.provider(providerid, nameprovider, cityprovider) VALUES (#{providerid}, #{nameprovider}, #{cityprovider})
+    </insert>
+
+    <update id="update">
+        update shp.provider
+        set nameprovider = #{nameprovider}, cityprovider = #{cityprovider}
+        where providerid = #{providerid}
+    </update>
+
+</mapper>
